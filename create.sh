@@ -22,7 +22,7 @@ then
 fi
 
 # Run the actual command
-$MYSQL -uroot -p -e "$SQL"
+$MYSQL -uroot -e "$SQL"
 
 # If you want to activate with root password
 # $MYSQL -uroot -p -e "$SQL"
