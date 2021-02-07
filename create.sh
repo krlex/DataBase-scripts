@@ -24,5 +24,8 @@ fi
 # Run the actual command
 $MYSQL -uroot -p -e "$SQL"
 
+# If you want to activate with root password
+# $MYSQL -uroot -p -e "$SQL"
+
 # Let the user know the database was created
 green "Database $1 and user $2 created with a password you chose"
