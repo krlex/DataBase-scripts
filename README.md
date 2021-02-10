@@ -16,8 +16,30 @@
 ```
 ./postgresql-install.sh
 ```
+
 # For basic config
 
 ```
 COMING SOON!!!
+```
+
+#Install MongoDB server
+
+```
+./mongodb-install.sh
+```
+
+# For basic config
+
+```
+COMING SOON!!!
+```
+
+###This installation scripts work on:
+
+```
+- Debian
+- Ubuntu
+- Fedora
+- CentOS
 ```
