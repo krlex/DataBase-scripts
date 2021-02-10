@@ -1,17 +1,17 @@
-###Install and create db, user and set password
+### Install and create db, user and set password
 
-#Install MariaDB server
+# Install MariaDB server
 
 ```
 ./mysql-install.sh
 ```
-#For basic config
+# For basic config
 
 ```
 ./create.sh database user password
 ```
 
-#Install PostgresSQL server
+# Install PostgresSQL server
 
 ```
 ./postgresql-install.sh
@@ -35,7 +35,7 @@ COMING SOON!!!
 COMING SOON!!!
 ```
 
-###This installation scripts work on:
+### This installation scripts work on:
 
 ```
 - Debian
