@@ -1,35 +1,46 @@
-### Install and create db, user and set password
+# Install and create db, user and set password
 
-# Install MariaDB server
-
-```
-./mysql-install.sh
-```
-# For basic config
+## Install MariaDB server
 
 ```
-./create.sh database user password
+./mariadb-install.sh
+```
+## For basic config
+
+```
+./mariadb-create.sh database user password
+```
+## For backup
+
+```
+./mariadb-backup.sh
 ```
 
-# Install PostgresSQL server
+## For restore backup
+
+```
+./mariadb-restore.sh
+```
+
+## Install PostgresSQL server
 
 ```
 ./postgresql-install.sh
 ```
 
-# For basic config
+## For basic config
 
 ```
 COMING SOON!!!
 ```
 
-#Install MongoDB server
+## Install MongoDB server
 
 ```
 ./mongodb-install.sh
 ```
 
-# For basic config
+## For basic config
 
 ```
 COMING SOON!!!
