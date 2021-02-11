@@ -33,7 +33,16 @@
 ```
 COMING SOON!!!
 ```
+## For backup
 
+```
+./postgresql-backup.sh postgres mydatabase mydbschiema.sql mydbdata.sql --execlude-schema=audit
+```
+## For restore backup
+
+```
+./postgresql-restore.sh newsuser newdatabase mydbschiema.sql mydbdata.sql
+```
 ## Install MongoDB server
 
 ```
