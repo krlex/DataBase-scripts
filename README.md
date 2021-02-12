@@ -33,7 +33,16 @@
 ```
 COMING SOON!!!
 ```
+## For backup
 
+```
+./postgresql-backup.sh postgres mydatabase mydbschiema.sql mydbdata.sql --execlude-schema=audit
+```
+## For restore backup
+
+```
+./postgresql-restore.sh newsuser newdatabase mydbschiema.sql mydbdata.sql
+```
 ## Install MongoDB server
 
 ```
@@ -44,6 +53,17 @@ COMING SOON!!!
 
 ```
 COMING SOON!!!
+```
+
+## For backup
+
+```
+./mongodb-backup.sh
+```
+## For restore backup
+
+```
+./mongodb-restore.sh
 ```
 
 ### This installation scripts work on:
