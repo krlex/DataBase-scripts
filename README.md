@@ -55,6 +55,17 @@ COMING SOON!!!
 COMING SOON!!!
 ```
 
+## For backup
+
+```
+./mongodb-backup.sh
+```
+## For restore backup
+
+```
+./mongodb-restore.sh
+```
+
 ### This installation scripts work on:
 
 ```
