@@ -1,17 +1,25 @@
-#!/usr/bin/env bash
+#!/bin/bash
 
-backup=$1 ; shift
-[[ -z $backup ]] && echo "Usage: $0 <backup-name> [<dbname>...]" && exit 1
+# Load variables from .env file
+if [ -f .env ]; then
+  export $(cat .env | grep -v '^#' | xargs)
+fi
 
-databases="$@"
+# Backup directory
+BACKUP_DIR="$BACKUP_PATH"
 
-rm -rf /host/$backup
-mariabackup --user=root --backup \
-    --databases="$databases" \
-    --target-dir=/host/$backup
+# Remote server details
+REMOTE_SERVER="$REMOTE_SERVER_ADDRESS"
+REMOTE_USER="$REMOTE_SERVER_USER"
+REMOTE_DIR="$REMOTE_PATH"
 
-cd /host/
-rm -f $backup.tgz
-tar --create --gzip --file=$backup.tgz $backup
+# Create a timestamp for the backup file
+TIMESTAMP=$(date +"%Y%m%d%H%M%S")
 
-rm -rf $backup
+# Backup MySQL database
+mysqldump -u $DB_USER -p$DB_PASS $DB_NAME > $BACKUP_DIR/mysql_backup_$TIMESTAMP.sql
+
+# Transfer backup to remote server
+scp $BACKUP_DIR/mysql_backup_$TIMESTAMP.sql $REMOTE_USER@$REMOTE_SERVER:$REMOTE_DIR
+
+echo "MySQL backup and transfer completed: $BACKUP_DIR/mysql_backup_$TIMESTAMP.sql"

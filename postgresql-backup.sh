@@ -1,39 +1,25 @@
-#!/usr/bin/env bash
+#!/bin/bash
 
-if [ -z $1 ]; then
-    echo "Enter the username:"
-    read USERNAME
-else
-    USERNAME=$1
+# Load variables from .env file
+if [ -f .env ]; then
+  export $(cat .env | grep -v '^#' | xargs)
 fi
 
-if [ -z $2 ]; then
-    echo "Enter the database name:"
-    read DBNAME
-else
-    DBNAME=$2
-fi
+# Backup directory
+BACKUP_DIR="$BACKUP_PATH"
 
-if [ -z $3 ]; then
-    echo "Enter the schema file name:"
-    read SCHEMA
-else
-    SCHEMA=$3
-fi
+# Remote server details
+REMOTE_SERVER="$REMOTE_SERVER_ADDRESS"
+REMOTE_USER="$REMOTE_SERVER_USER"
+REMOTE_DIR="$REMOTE_PATH"
 
-if [ -z $4 ]; then
-    echo "Enter the data file name:"
-    read DATA
-else
-    DATA=$4
-fi
+# Create a timestamp for the backup file
+TIMESTAMP=$(date +"%Y%m%d%H%M%S")
 
-if [ -z $5 ]; then
-    echo "Extra params on data file:"
-    read EXTRA
-else
-    EXTRA=$5
-fi
+# Backup PostgreSQL database
+pg_dump -U $DB_USER $DB_NAME > $BACKUP_DIR/postgresql_backup_$TIMESTAMP.sql
 
-pg_dump --username=$USERNAME --schema-only $DBNAME > $SCHEMA
-pg_dump --username=$USERNAME --data-only --disable-triggers $EXTRA $DBNAME > $DATA
+# Transfer backup to remote server
+scp $BACKUP_DIR/postgresql_backup_$TIMESTAMP.sql $REMOTE_USER@$REMOTE_SERVER:$REMOTE_DIR
+
+echo "PostgreSQL backup and transfer completed: $BACKUP_DIR/postgresql_backup_$TIMESTAMP.sql"
